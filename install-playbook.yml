@@ -1,7 +1,32 @@
 ---
 - hosts: ansible-ubuntu-desktop
   become: yes
-  vars_files:
-    - install-vars.yml
-  roles:
-    - kaniabi.docker
+  vars:
+    ansible_python_interpreter: 'python3'
+
+    my_github_account: 'Kaniabi'
+    my_name: 'Ubuntu'
+    my_username: 'ubuntu'
+    my_password: 'chucknorris'
+    my_hostname: 'mikasa'
+
+  tasks:
+    - name: hostname
+      include_role:
+        name: kaniabi.hostname
+
+    - name: shell
+      include_role:
+        name: kaniabi.shell
+
+    - name: docker
+      include_role:
+        name: kaniabi.docker
+
+    - name: locale
+      include_role:
+        name: tersmitten.locales
+      vars:
+        locales_language_packs_present:
+          - language-pack-en
+          - language-pack-pt

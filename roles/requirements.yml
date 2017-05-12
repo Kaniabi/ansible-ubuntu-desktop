@@ -1,0 +1,11 @@
+- src: mivok0.users
+- src: tersmitten.locales
+# - src: franklinkim.docker
+# - src: franklinkim.docker-compose
+# - src: torian.filebeat
+# - src: franklinkim.newrelic
+
+# - src: jdauphant.nginx
+# - src: cchurch.uwsgi
+# - src: infOpen.uwsgi
+# - src: cchurch.virtualenv

@@ -1,0 +1,8 @@
+---
+
+- name: 'Configure hostname'
+  hostname:
+    name: "{{ my_hostname }}"
+
+- name: 'Add host to /etc/hosts'
+  lineinfile: dest=/etc/hosts state=present backup=yes regexp='^127.0.0.1' line='127.0.0.1 localhost {{ axado_hostname }}'
