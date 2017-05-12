@@ -1,0 +1,7 @@
+---
+- hosts: ansible-ubuntu-desktop
+  become: yes
+  vars_files:
+    - install-vars.yml
+  roles:
+    - kaniabi.docker

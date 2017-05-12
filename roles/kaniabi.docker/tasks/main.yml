@@ -1,0 +1,30 @@
+---
+
+- name: docker-python-packages
+  pip: name={{ item }}
+  with_items:
+    # Installs docker-compose==1.9.0 compatible with Ansible's docker_service task.
+    # Newer version of docker-compose depend on 'docker' package, which is unexpected by docker_service checks. This
+    # version uses 'docker-py' package.
+    - docker-py
+    - docker-compose==1.9.0
+  tags:
+    - docker
+
+- name: ensure repository key is installed
+  apt_key:
+    id: "58118E89F3A912897C070ADBF76221572C52609D"
+    keyserver: "hkp://p80.pool.sks-keyservers.net:80"
+    state: present
+
+- name: ensure docker registry is available
+  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-xenial main' state=present
+
+- name: ensure docker and dependencies are installed
+  apt: name=docker-engine update_cache=yes
+
+# Uncomment the following to enable insecure registries with Docker
+#- name: ensure docker can use insecure registries in 10.11.0.0/16
+#  lineinfile: "dest=/etc/default/docker regexp=^DOCKER_OPTS line=DOCKER_OPTS='--insecure-registry 10.11.0.0/16'"
+
+- service: name=docker state=restarted
