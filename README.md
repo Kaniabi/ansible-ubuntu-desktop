@@ -9,5 +9,5 @@ Install Ubuntu with the user 'ubuntu'.
 Installs the bare minimum for remote access (ssh).
 
 ```
-$ curl -L http://github.com/kaniabi/ansible-ubuntu-desktop/blob/master/boostrap.sh | sh
+$ curl -L https://github.com/kaniabi/ansible-ubuntu-desktop/blob/master/boostrap.sh | sh
 ```
