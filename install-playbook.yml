@@ -5,8 +5,8 @@
     ansible_python_interpreter: 'python3'
 
     my_github_account: 'Kaniabi'
-    my_name: 'Ubuntu'
-    my_username: 'ubuntu'
+    my_name: 'Kaniabi'
+    my_username: 'kaniabi'
     my_password: 'chucknorris'
     my_hostname: 'mikasa'
 

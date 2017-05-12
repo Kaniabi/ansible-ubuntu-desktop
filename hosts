@@ -1,2 +1,2 @@
 [ansible-ubuntu-desktop]
-192.168.0.119 ansible_user=kaniabi
+10.13.102.51 ansible_user=ubuntu

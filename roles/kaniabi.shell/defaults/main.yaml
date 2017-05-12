@@ -1,5 +1,5 @@
 ---
-my_github_account = "Kaniabi"
+my_github_account: "Kaniabi"
 my_name: "Kaniabi"
 my_username: "kaniabi"
 my_password: "chucknorris"
