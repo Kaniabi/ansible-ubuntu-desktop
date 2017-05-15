@@ -15,6 +15,22 @@
       include_role:
         name: kaniabi.hostname
 
+    - name: user
+      include_role:
+        name: mivok0.users
+      vars:
+        users:
+          - name: "{{ my_name }}"
+            username: "{{ my_username }}"
+            password: "{{ my_password }}"
+            update_password: 'always'
+            groups: ['sudo']
+            uid: 1001
+            shell: '/usr/bin/zsh'
+            home: '/home/{{ my_username }}'
+            ssh_key:
+              - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgHIedVICwvVMHMXx8NK98aztFwXSFlySLQSsY4VjqW8uEX/hZl9LvvysAzYJHJ4bOYsSOIJEjNrnSXdzdbCkY/lRfeGhK3cYqQGsCxqkOqxmFRH8OpRL0f3lzPFMG1akqLF4NkciywoQHdxAVD2BvhtoPcOo4r0mZLoynFhHdGZhoe/GotLKr5IQBB4yKOPNTUuTsdN14gF9xDNSNv9RbJPYekZWHotZV6OTy2u2BhdYnC8Se9Ngq2PVKRjtbIqMK2sVRPpIcaYoTmTcOS3B79Xt8m53/MzplbuaFl0E+fAtYz50u+aOrMTYlQ9cYTo8zzRiHHRTPg7mvL+anwJYB kaniabi@anakin"
+
     - name: shell
       include_role:
         name: kaniabi.shell
@@ -30,3 +46,24 @@
         locales_language_packs_present:
           - language-pack-en
           - language-pack-pt
+
+    - name: browser
+      include_role:
+        name: cmprescott.chrome
+
+    - name: music-player
+      include_role:
+        name: kaniabi.spotify
+      tags:
+        - music-player
+
+    - name: python-ide
+      include_role:
+        name: softasap.sa-dev-pycharm
+      vars:
+        java_version: 8
+        pycharm_version: 2017.1.2
+        pycharm_edition: professional
+        apps_dir: "/home/{{my_username}}/apps"
+      tags:
+        - python-ide

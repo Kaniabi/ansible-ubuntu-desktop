@@ -5,6 +5,8 @@
   apt: name={{ item }} state=latest
   with_items:
     - zsh
+    - python3-pip
+    - git
 
 - name: Required global python packages
   pip: name={{ item }}, executable=pip3
@@ -19,12 +21,6 @@
     force: yes
   become_user: '{{ my_username }}'
 
-- name: Install dotfiles
-  shell: '~/.dotfiles/script/bootstrap'
-  args:
-    creates: '~/.zshrc'
-  become_user: '{{ my_username }}'
-
 # NOTE: Maybe we should create a file in /etc/sudoers.d/USERNAME and put this settings there.
 - name: Configure passwordless sudo.
   lineinfile:
@@ -35,7 +31,7 @@
 
 - name: Configure id_rsa (copy from host location).
   copy:
-    src: '$HOME/.ssh/id_rsa'
+    src: '/home/kaniabi/.ssh/id_rsa'
     dest: '/home/{{ my_username }}/.ssh/id_rsa'
     owner: '{{ my_username }}'
     group: '{{ my_username }}'
@@ -45,8 +41,15 @@
 # NOTE: This must come AFTER id_rsa is configured.
 - name: Checkout dotfiles
   git:
-    repo: "git@github.com:{{ my_github_user }}/dotfiles.git"
+    repo: "git@github.com:{{ my_github_account }}/dotfiles.git"
     dest: '/home/{{ my_username }}/.dotfiles'
     force: yes
     version: axado
+    accept_hostkey: yes
+  become_user: '{{ my_username }}'
+
+- name: Install dotfiles
+  shell: '~/.dotfiles/script/bootstrap'
+  args:
+    creates: '~/.zshrc'
   become_user: '{{ my_username }}'

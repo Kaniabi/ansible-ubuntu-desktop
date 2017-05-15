@@ -1,5 +1,7 @@
 - src: mivok0.users
 - src: tersmitten.locales
+- src: cmprescott.chrome
+- src: softasap.sa-dev-pycharm
 # - src: franklinkim.docker
 # - src: franklinkim.docker-compose
 # - src: torian.filebeat
