@@ -47,16 +47,6 @@
           - language-pack-en
           - language-pack-pt
 
-    - name: browser
-      include_role:
-        name: cmprescott.chrome
-
-    - name: music-player
-      include_role:
-        name: kaniabi.spotify
-      tags:
-        - music-player
-
     - name: python-ide
       include_role:
         name: softasap.sa-dev-pycharm
@@ -67,3 +57,24 @@
         apps_dir: "/home/{{my_username}}/apps"
       tags:
         - python-ide
+
+    - name: editor
+      apt:
+        name: vim
+      tags:
+        - editor
+
+    - name: fonts
+      apt:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - fonts-roboto
+      tags:
+        - fonts
+
+  roles:
+    - {name: andrewrothstein.hub, tags: hub}
+    - {name: cmprescott.chrome, tags: browser}
+    - {name: kaniabi.spotify, tags: music-player}
+
