@@ -78,3 +78,5 @@
     - {name: cmprescott.chrome, tags: browser}
     - {name: kaniabi.spotify, tags: music-player}
 
+# TODO: Install "Roboto Mono for Powerline" font.
+
