@@ -1,0 +1,46 @@
+---
+  - set_fact:
+      use_pycharm_edition: "{{pycharm_edition | default('community')}}"
+
+  - name: Ensure apps/pycharm folder exist.
+    file:
+      path: "{{apps_dir}}/pycharm"
+      state: directory
+
+  - name: Decompress PyCharm archive
+    unarchive:
+      src=http://download.jetbrains.com/python/pycharm-{{use_pycharm_edition}}-{{pycharm_version}}.tar.gz
+      dest={{apps_dir}}/pycharm
+      remote_src=yes
+      extra_opts='--strip-components=1'
+
+  - name: Create symlink
+    file:
+      src={{apps_dir}}/pycharm/bin/pycharm.sh
+      dest=/usr/bin/pycharm
+      state=link
+    sudo: yes
+    sudo_user: root
+    tags:
+      -jetbrains
+      -pycharm
+      -setup
+
+#  - name: Create desktop entry
+#    template:
+#      src={{root_dir}}/files/jetbrains/desktopentry.j2
+#      dest=/home/{{deploy_user}}/Desktop/PyCharm.desktop
+#      mode=755
+#    with_items:
+#      - {
+#      name: "PyCharm",
+#      exec: "{{apps_dir}}/pycharm/bin/pycharm.sh",
+#      icon: "{{apps_dir}}/pycharm/bin/pycharm.png",
+#      comment: "Develop with PyCharm!",
+#      categories: "Development;IDE;",
+#      startupwmclass: "jetbrains-pycharm"
+#      }
+#    tags:
+#      -jetbrains
+#      -pycharm
+#      -setup

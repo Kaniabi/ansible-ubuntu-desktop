@@ -1,0 +1,12 @@
+---
+option_install_java: false
+java_version: 8
+pycharm_version: "2017.1.2" #5.0.1 # 4.5.4
+pycharm_edition: professional # professional | community
+
+
+root_dir: "{{role_path}}"
+deploy_user: "{{my_username}}"
+apps_dir: "/home/{{my_username}}/Shared"
+
+

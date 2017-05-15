@@ -2,7 +2,8 @@
 - hosts: ansible-ubuntu-desktop
   become: yes
   vars:
-    ansible_python_interpreter: 'python3'
+    # NOTE: This makes unarchive with URLs fail with "write() expects bytes, not str".
+    # ansible_python_interpreter: 'python3'
 
     my_github_account: 'Kaniabi'
     my_name: 'Kaniabi'
@@ -30,33 +31,6 @@
             home: '/home/{{ my_username }}'
             ssh_key:
               - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgHIedVICwvVMHMXx8NK98aztFwXSFlySLQSsY4VjqW8uEX/hZl9LvvysAzYJHJ4bOYsSOIJEjNrnSXdzdbCkY/lRfeGhK3cYqQGsCxqkOqxmFRH8OpRL0f3lzPFMG1akqLF4NkciywoQHdxAVD2BvhtoPcOo4r0mZLoynFhHdGZhoe/GotLKr5IQBB4yKOPNTUuTsdN14gF9xDNSNv9RbJPYekZWHotZV6OTy2u2BhdYnC8Se9Ngq2PVKRjtbIqMK2sVRPpIcaYoTmTcOS3B79Xt8m53/MzplbuaFl0E+fAtYz50u+aOrMTYlQ9cYTo8zzRiHHRTPg7mvL+anwJYB kaniabi@anakin"
-
-    - name: shell
-      include_role:
-        name: kaniabi.shell
-
-    - name: docker
-      include_role:
-        name: kaniabi.docker
-
-    - name: locale
-      include_role:
-        name: tersmitten.locales
-      vars:
-        locales_language_packs_present:
-          - language-pack-en
-          - language-pack-pt
-
-    - name: python-ide
-      include_role:
-        name: softasap.sa-dev-pycharm
-      vars:
-        java_version: 8
-        pycharm_version: 2017.1.2
-        pycharm_edition: professional
-        apps_dir: "/home/{{my_username}}/apps"
-      tags:
-        - python-ide
 
     - name: editor
       apt:
@@ -94,10 +68,11 @@
          - axado-requirements
 
   roles:
+    - {name: kaniabi.shell, tags: shell}
+    - {name: tersmitten.locales, locales_language_packas_present: [language-pack-en, language-pack-pt], tags: locales}
+    - {name: kaniabi.docker, tags: docker}
     - {name: andrewrothstein.hub, tags: hub}
     - {name: cmprescott.chrome, tags: browser}
     - {name: kaniabi.spotify, tags: music-player}
     - {name: wtanaka.slack, tags: slack}
-
-# TODO: Install "Roboto Mono for Powerline" font.
-
+    - {name: kaniabi.pycharm, become_user: "{{ my_username }}", tags: python-ide}
