@@ -7,9 +7,9 @@
 
     my_github_account: 'Kaniabi'
     my_name: 'Kaniabi'
-    my_username: 'kaniabi'
-    my_password: 'chucknorris'
-    my_hostname: 'mikasa'
+    my_username: kaniabi
+    my_password: chucknorris
+    my_hostname: mikasa
 
   tasks:
     - name: hostname
@@ -64,8 +64,9 @@
         - mysql-client
         - libmysqlclient-dev
         - libssl-dev
+        - libcurl4-openssl-dev
       tags:
-         - axado-requirements
+        - axado-requirements
 
   roles:
     - {name: kaniabi.shell, tags: shell}
