@@ -3,6 +3,7 @@
 - src: cmprescott.chrome
 - src: softasap.sa-dev-pycharm
 - src: andrewrothstein.hub
+- src: wtanaka.slack
 # - src: franklinkim.docker
 # - src: franklinkim.docker-compose
 # - src: torian.filebeat
