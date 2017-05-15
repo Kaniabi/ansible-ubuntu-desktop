@@ -73,6 +73,26 @@
       tags:
         - fonts
 
+    - name: desktop
+      apt:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - unity-tweak-tool
+      tags:
+        - desktop
+
+    - name: axado-requirements
+      apt:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - mysql-client
+        - libmysqlclient-dev
+        - libssl-dev
+      tags:
+         - axado-requirements
+
   roles:
     - {name: andrewrothstein.hub, tags: hub}
     - {name: cmprescott.chrome, tags: browser}
