@@ -52,6 +52,7 @@
       with_items:
         - unity-tweak-tool
         - terminator
+        - dconf.editor
       tags:
         - desktop
 
@@ -74,6 +75,16 @@
         locales_language_packs_present:
           - language-pack-en
           - language-pack-pt
+
+    - name: private-repo
+      git:
+        repo: git@gitlab.com:kaniabi/private.git
+        dest: /home/{{ my_username }}/.private
+        accept_hostkey: yes
+        force: yes
+      become_user: '{{ my_username }}'
+      tags:
+        - private-repo
 
   roles:
     - {name: kaniabi.shell, tags: shell}
