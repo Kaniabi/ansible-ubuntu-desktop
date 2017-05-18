@@ -48,11 +48,10 @@
         - fonts
 
     - name: desktop
-      apt:
-        name: "{{ item }}"
-        state: installed
+      apt: name={{ item }} state=installed
       with_items:
         - unity-tweak-tool
+        - terminator
       tags:
         - desktop
 
@@ -76,11 +75,6 @@
           - language-pack-en
           - language-pack-pt
 
-    - name: terminator
-      apt: name={{ item }}, state=installed
-      with_items:
-        - terminator
-
   roles:
     - {name: kaniabi.shell, tags: shell}
     - {name: tersmitten.locales, locales_language_packas_present: [language-pack-en, language-pack-pt], tags: locales}
@@ -90,3 +84,4 @@
     - {name: kaniabi.spotify, tags: music-player}
     - {name: wtanaka.slack, tags: slack}
     - {name: kaniabi.pycharm, become_user: "{{ my_username }}", tags: python-ide}
+    - {name: wtanaka.teamviewer, tags: teamviewer}
