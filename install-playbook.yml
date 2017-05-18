@@ -76,6 +76,7 @@
           - language-pack-en
           - language-pack-pt
 
+    # TODO: Configure .aws and .ssh links to .private sub-directories.
     - name: private-repo
       git:
         repo: git@gitlab.com:kaniabi/private.git
