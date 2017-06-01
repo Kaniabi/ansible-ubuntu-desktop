@@ -1,0 +1,17 @@
+---
+
+- name: Install nodejs/npm
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - nodejs
+    - npm
+  tags:
+    - desktop
+
+- name: Create /usr/bin/node link
+  file:
+    src: /usr/bin/js
+    dest: /usr/bin/node
+    state: link

@@ -1,0 +1,31 @@
+version: '2'
+services:
+   mysql:
+     image: mysql:5.7
+     restart: always
+     volumes:
+       - /srv/mysql:/var/lib/mysql
+       - /srv/mysql-conf.d:/etc/mysql/conf.d
+     ports:
+      - '3306:3306'
+     environment:
+       MYSQL_ROOT_PASSWORD: 'chucknorris'
+       MYSQL_USER: 'hackerberg'
+       MYSQL_PASSWORD: 'chucknorris'
+     entrypoint:
+       - docker-entrypoint.sh
+       - --range_optimizer_max_mem_size=0
+       - --max_allowed_packet=5G
+       - --net_buffer_length=10M
+   devpi:
+     image: devpi
+     restart: always
+     volumes:
+       - /srv/devpi:/data
+     ports:
+       - '3141:3141'
+     environment:
+       DEVPI_ROOT_PASSWORD: chucknorris
+       DEVPI_USER: hackerberg
+       DEVPI_PASSWORD: chucknorris
+       DEVPI_INDEX: dev
