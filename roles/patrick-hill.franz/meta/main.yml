@@ -1,0 +1,27 @@
+galaxy_info:
+  author: Patrick-Hill
+  description: Installs Franz chat client
+
+  license: BSD
+
+  min_ansible_version: 2.0
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - vivid
+    - wily
+    - xenial
+    - yakkety
+  - name: Debian
+    versions:
+    - squeeze
+    - stretch
+    - wheezy
+
+  galaxy_tags:
+  - Chat
+  - Messaging
+  - Network
+
+dependencies: []

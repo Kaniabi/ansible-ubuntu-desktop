@@ -90,10 +90,12 @@
     - {name: tersmitten.locales, locales_language_packas_present: [language-pack-en, language-pack-pt], tags: locales}
     - {name: andrewrothstein.hub, tags: hub}
     - {name: cmprescott.chrome, tags: browser}
-    - {name: wtanaka.slack, tags: slack}
     - {name: kaniabi.shell, tags: shell}
     - {name: kaniabi.docker, tags: docker}
     - {name: kaniabi.spotify, tags: music-player}
     - {name: kaniabi.pycharm, become_user: "{{ my_username }}", tags: python-ide}
     - {name: wtanaka.teamviewer, tags: teamviewer}
     - {name: kaniabi.nodejs, tags: nodejs }
+    # - {name: wtanaka.slack, tags: slack}
+    - {name: patrick-hill.franz, tags: franz }
+
